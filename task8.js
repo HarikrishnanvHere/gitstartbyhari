@@ -7,7 +7,7 @@ form.addEventListener('submit', addItem);
 // Delete event
 itemList.addEventListener('click', removeItem);
 // Filter event
-filter.addEventListener('keyup', filterItems);
+//filter.addEventListener('keyup', filterItems);
 
 // Add item
 function addItem(e){
@@ -49,22 +49,22 @@ function removeItem(e){
   }
 }
 
-// Filter Items
-function filterItems(e){
-  // convert text to lowercase
-  var text = e.target.value.toLowerCase();
-  // Get lis
-  var items = itemList.getElementsByTagName('li');
-  // Convert to an array
-  Array.from(items).forEach(function(item){
-    var itemName = item.firstChild.textContent;
-    if(itemName.toLowerCase().indexOf(text) != -1){
-      item.style.display = 'block';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-}
+// // Filter Items
+// function filterItems(e){
+//   // convert text to lowercase
+//   var text = e.target.value.toLowerCase();
+//   // Get lis
+//   var items = itemList.getElementsByTagName('li');
+//   // Convert to an array
+//   Array.from(items).forEach(function(item){
+//     var itemName = item.firstChild.textContent;
+//     if(itemName.toLowerCase().indexOf(text) != -1){
+//       item.style.display = 'block';
+//     } else {
+//       item.style.display = 'none';
+//     }
+//   });
+// }
 
 
 //Adding edit button
@@ -108,3 +108,30 @@ for(let i=0;i<listElements.length;i++){
 }
 
 
+// implementing filter mechanism:
+
+//getting input text:
+let inputElement = document.getElementById("filter");
+
+inputElement.addEventListener("keyup",filterText);
+
+
+function filterText(e){
+    let inputText = e.target.value.toLowerCase();
+
+    //getting list item text;
+
+    let Arr = Array.from(itemList.getElementsByTagName("li"));
+
+    for(let i=0;i<Arr.length;i++){
+        let t = Arr[i].firstChild.textContent.toLowerCase();
+        if(t.indexOf(inputText)!=-1){
+            Arr[i].style.display = "block";
+        }
+        else{
+            Arr[i].style.display = "none";
+        }
+    }
+
+
+}
